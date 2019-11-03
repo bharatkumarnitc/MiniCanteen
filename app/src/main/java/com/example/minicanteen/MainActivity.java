@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
 
-    private static final Integer[] XMEN= {R.drawable.bigbang,R.drawable.house,R.drawable.game_of_thrones,R.drawable.hannibal};
+    private static final Integer[] XMEN= {R.drawable.bigbang,R.drawable.game_of_thrones,R.drawable.hannibal,R.drawable.house};
     private ArrayList<Integer> XMENArray = new ArrayList<Integer>();
 
     @Override

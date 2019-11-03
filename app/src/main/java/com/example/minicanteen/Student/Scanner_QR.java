@@ -101,8 +101,14 @@ public class Scanner_QR extends AppCompatActivity  implements View.OnClickListen
                                 }
                                 else if (new JSONObject(response).get("success").equals("false"))
                                 {
-                                   progressDialog.dismiss();
+                                    progressDialog.dismiss();
                                     Toast.makeText(Scanner_QR.this, "Amount is not Sufficient", Toast.LENGTH_SHORT).show();
+
+                                }
+                                else if (new JSONObject(response).get("success").equals("amount"))
+                                {
+                                   progressDialog.dismiss();
+                                    Toast.makeText(Scanner_QR.this, "You are not Valid Student", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -163,7 +169,7 @@ public class Scanner_QR extends AppCompatActivity  implements View.OnClickListen
 
 
     public class ScanCode extends StringRequest {
-        private static final String REGISTER_URL = "https://nitconlinevoting.000webhostapp.com/MiniBook/User/transaction.php";
+        private static final String REGISTER_URL = "https://nitconlinevoting.000webhostapp.com/MiniBook/User/Money_transfer.php";
         private Map<String, String> parameters;
         public ScanCode(String Roll,String id,String amount, Response.Listener<String> listener) {
             super(Method.POST,REGISTER_URL, listener,null);
