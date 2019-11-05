@@ -1,10 +1,13 @@
 package com.example.minicanteen.Student;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.minicanteen.R;
 
 import org.json.JSONArray;
@@ -31,20 +34,28 @@ public class Expenses extends AppCompatActivity {
     String result;
     StringBuffer sb;
     static String[][] data;
-    static String[] header={"Roll Number","Shop Id","Amount"};
+    static String[] header={"Date","Shop Id","Amount"};
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    String Roll_Number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses);
+        pref=getSharedPreferences("Login_Roll",MODE_PRIVATE);
+        editor=pref.edit();
+        Roll_Number=pref.getString("std_roll",null);
+
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
         final TableView<String[]> tableView = (TableView<String[]>)findViewById(R.id.showcustomer);
         tableView.setHeaderBackgroundColor(Color.parseColor("#B3E5FC"));
         tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(this,header));
         tableView.setColumnCount(3);
+
         alldetails();
-        //tableView.setDataAdapter(new SimpleTableDataAdapter(this, data));
+        tableView.setDataAdapter(new SimpleTableDataAdapter(this, data));
 
 
     }
@@ -52,7 +63,7 @@ public class Expenses extends AppCompatActivity {
     public void alldetails()
     {
         try {
-            URL url=new URL("https://veiled-heat.000webhostapp.com/MLM/Admin/UserShow.php");
+            URL url=new URL("https://nitconlinevoting.000webhostapp.com/MiniBook/User/Expenses.php");
             HttpURLConnection con=(HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             in=new BufferedInputStream(con.getInputStream());
@@ -85,20 +96,17 @@ public class Expenses extends AppCompatActivity {
                 k=0;
                 for (int j = 0; j <3 ; j++) {
                     jsonObject = jsonArray.getJSONObject(i);
-                    if(k==0)
-                    {
-                        data[i][j]=jsonObject.getString("User_Id");
-                    }
-                    else if(k==1)
-                    {
-                        data[i][j]=jsonObject.getString("User_Name")    ;
-                    }
-                    else if(k==2)
-                    {
-                        data[i][j]=jsonObject.getString("Mobile");
-                    }
-                    k++;
+                    if (jsonObject.getString("RollNo").equalsIgnoreCase(Roll_Number)) {
 
+                        if (k == 0) {
+                            data[i][j] = jsonObject.getString("Date");
+                        } else if (k == 1) {
+                            data[i][j] = jsonObject.getString("ShopNo");
+                        } else if (k == 2) {
+                            data[i][j] = jsonObject.getString("PurchaseAmount");
+                        }
+                        k++;
+                    }
                 }
             }
 
@@ -108,8 +116,10 @@ public class Expenses extends AppCompatActivity {
         catch (Exception e)
         {
             e.printStackTrace();
-        }
+       }
 
 
     }
+
+
 }

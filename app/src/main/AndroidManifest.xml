@@ -11,20 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.Admin_Exp_table"></activity>
+        <activity android:name=".Student.Update_Profile"></activity>
+        <activity android:name=".Admin.Admin_Exp_table" />
         <activity android:name=".Admin.Admin_Add_Money" />
         <activity android:name=".Admin.Admin_Profile" />
         <activity android:name=".Admin.Admin_Student_amount" />
         <activity android:name=".Admin.Admin_Page" />
         <activity android:name=".Admin.Admin_Login" />
         <activity android:name=".Admin.Admin_Register" />
-        <activity android:name=".Student.Expenses"
-            android:parentActivityName=".Student.User_Profile"/>
-        <activity android:name=".Student.User_show"
-            android:parentActivityName=".Student.User_Profile"/>
-
-        <activity android:name=".Student.Scanner_QR"
-            android:parentActivityName=".Student.User_Profile"/>
+        <activity
+            android:name=".Student.Expenses"
+            android:parentActivityName=".Student.User_Profile" />
+        <activity
+            android:name=".Student.User_show"
+            android:parentActivityName=".Student.User_Profile" />
+        <activity
+            android:name=".Student.Scanner_QR"
+            android:parentActivityName=".Student.User_Profile" />
         <activity android:name=".Student.Signup" />
         <activity android:name=".Student.Otp" />
         <activity android:name=".Student.User_Profile" />
