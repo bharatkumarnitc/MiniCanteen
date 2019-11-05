@@ -5,12 +5,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.minicanteen.MainActivity;
 import com.example.minicanteen.R;
 
 public class Admin_Page extends AppCompatActivity {
 
     TextView addmoney,adminprofile,adminexp;
+    private static long backButtonCount;
+
+    @Override
+    public void onBackPressed() {
+        if(backButtonCount >= 1)
+        {
+            Intent it = new Intent(getApplicationContext(), MainActivity.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(it);
+            finish();
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +39,8 @@ public class Admin_Page extends AppCompatActivity {
         addmoney=(TextView)findViewById(R.id.Admin_add_amount);
         adminprofile=(TextView)findViewById(R.id.Admin_profile);
         adminexp=(TextView)findViewById(R.id.Admin_exp);
+
+
 
 
         addmoney.setOnClickListener(new View.OnClickListener() {
