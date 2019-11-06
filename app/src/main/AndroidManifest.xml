@@ -12,9 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Student.Update_Profile"></activity>
-        <activity android:name=".Admin.Admin_Exp_table" />
-        <activity android:name=".Admin.Admin_Add_Money" />
-        <activity android:name=".Admin.Admin_Profile" />
+        <activity android:name=".Admin.Admin_Exp_table"
+            android:parentActivityName=".Admin.Admin_Page"/>
+        <activity android:name=".Admin.Admin_Add_Money"/>
+        <activity android:name=".Admin.Admin_Profile"
+            android:parentActivityName=".Admin.Admin_Page"/>
         <activity android:name=".Admin.Admin_Student_amount" />
         <activity android:name=".Admin.Admin_Page" />
         <activity android:name=".Admin.Admin_Login" />

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class User_show extends AppCompatActivity {
 
 
     TextView name,email,rollnumber,amount,mobile;
+    Button btn;
     RequestQueue requestQueue;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -44,6 +46,7 @@ public class User_show extends AppCompatActivity {
         rollnumber=(TextView)findViewById(R.id.std_roll);
         amount=(TextView)findViewById(R.id.std_amount);
         mobile=(TextView)findViewById(R.id.std_mobile);
+        btn=(Button)findViewById(R.id.cus_profile_update);
 
 
         requestQueue= Volley.newRequestQueue(User_show.this);
@@ -91,6 +94,13 @@ public class User_show extends AppCompatActivity {
         });
 
         requestQueue.add(otp_verify);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Update_Profile.class));
+            }
+        });
 
 
     }
